@@ -25,6 +25,9 @@ class PageScraper:
     except:
       raise TypeError("downloadargs and parseargs must be mapping objects.")
 
+  def save(self, data, table_name, commit = True):
+    data['_downloadargs'] = dumps(self.downloadargs)
+    data['_parseargs'] = dumps(self.parseargs)
 
   def pipe(self, objects):
     "Return a list of objects with some added metadata."
@@ -41,6 +44,7 @@ class SimpleRequest(PageScraper):
     self.use_cache = kwargs.pop('use_cache') if kwargs.has_key('use_cache') else False
     self.args = args
     self.kwargs = kwargs
+    self.downloadargs = {"args": args, "kwargs": kwargs}
     self.parseargs = {}
 
   def download(self):

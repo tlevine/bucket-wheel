@@ -3,6 +3,9 @@ Bucket-Wheel makes it easier to excavate data from documents.
     from lxml.html import fromstring
     from bucketwheel import *
     from urllib2 import urlopen
+    from highwall import Highwall
+
+    h = Highwall()
 
     class Menu(PageScraper):
       def download(self):
@@ -11,7 +14,8 @@ Bucket-Wheel makes it easier to excavate data from documents.
       def parse(self, page):
         x = fromstring(page)
         baz = x.cssselect('#foo .bar')[0].text_content()
-        self.save({"baz": baz}, 'chainsaw')
+        d = self.annotate({"baz": baz})
+        h.save(d, 'chainsaw')
         self.pipe([Docket(url) for url in x.xpath('a/@href')])
 
     class Docket(Get):
