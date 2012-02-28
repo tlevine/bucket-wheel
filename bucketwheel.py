@@ -1,7 +1,7 @@
 from json import dumps
 from time import sleep, time
 
-def seed(scrapers):
+def seed(*scrapers):
   """Takes a scraper object or a list of scraper objects.
   Run these scraper objects and any piped objects."""
   while len(scrapers) > 0:
