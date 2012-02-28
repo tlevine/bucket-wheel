@@ -5,7 +5,7 @@ Bucket-Wheel makes it easier to excavate data from documents.
 
     class Menu(PageScraper):
       def download(self):
-        return urlopen(self.downloadargs['url']).read()
+        self.pipe(urlopen(self.downloadargs['url']).read())
 
       def parse(self, page):
         x = fromstring(page)
@@ -13,7 +13,7 @@ Bucket-Wheel makes it easier to excavate data from documents.
         self.save({"baz": baz}, 'chainsaw')
         self.pipe([Docket(url) for url in x.xpath('a/@href')])
 
-    class Docket(GetHTML):
+    class Docket(GetURL):
 
 `PageScraper.save` saves the data in the dictionary plus
 the following information
