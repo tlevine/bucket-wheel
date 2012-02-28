@@ -26,7 +26,7 @@ Bucket-Wheel makes it easier to excavate data from documents.
         h.insert(d, 'chainsaw')
 
     m1 = Menu({"url": "http://example.com/foo"})
-    m1 = Menu({"url": "http://example.com/bar"})
+    m2 = Menu({"url": "http://example.com/bar"})
     seed(m1, m2)
 
 `PageScraper.save` saves the data in the dictionary plus
