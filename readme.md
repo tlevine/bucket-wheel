@@ -15,14 +15,15 @@ Bucket-Wheel makes it easier to excavate data from documents.
         x = fromstring(page)
         baz = x.cssselect('#foo .bar')[0].text_content()
         d = self.annotate({"baz": baz})
-        h.save(d, 'chainsaw')
+        h.insert(d, 'chainsaw')
         self.pipe([Docket(url) for url in x.xpath('a/@href')])
 
     class Docket(Get):
       def parse(self, page):
         x = fromstring(page)
         data= [{"text":p.text_content()} for p in x.cssselect('#main > p')]
-        self.save(data, 'dockets')
+        d = self.annotate(data, 'dockets')
+        h.insert(d, 'chainsaw')
         self.pipe([Docket(url) for url in x.xpath('a/@href')])
 
 `PageScraper.save` saves the data in the dictionary plus
