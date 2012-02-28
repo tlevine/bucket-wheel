@@ -1,3 +1,6 @@
+from json import dumps
+from time import sleep, time
+
 def seed(scrapers):
   """Takes a scraper object or a list of scraper objects.
   Run these scraper objects and any piped objects."""
@@ -6,6 +9,10 @@ def seed(scrapers):
     page = scraper.download()
     morescrapers = scraper.parse(page)
     scrapers.append(morescrapers)
+    randomsleep()
+
+def randomsleep():
+  sleep(3)
 
 class PageScraper:
   "Base class for scraping a page"
@@ -25,9 +32,12 @@ class PageScraper:
     except:
       raise TypeError("downloadargs and parseargs must be mapping objects.")
 
-  def save(self, data, table_name, commit = True):
-    data['_downloadargs'] = dumps(self.downloadargs)
-    data['_parseargs'] = dumps(self.parseargs)
+  def annotate(self, data):
+    citation = copy(data)
+    citation['_downloadargs'] = dumps(self.downloadargs)
+    citation['_parseargs'] = dumps(self.parseargs)
+    citation['_date_scraped'] = time()
+    return citation
 
   def pipe(self, objects):
     "Return a list of objects with some added metadata."
