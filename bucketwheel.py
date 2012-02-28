@@ -16,7 +16,7 @@ def randomsleep():
 
 class PageScraper:
   "Base class for scraping a page"
-  def __init__(self, downloadargs, parseargs, usecache = True):
+  def __init__(self, downloadargs, parseargs = {}, usecache = True):
     "Takes two dictionaries"
     self.__test_is_mapping(downloadargs)
     self.__test_is_mapping(parseargs)
