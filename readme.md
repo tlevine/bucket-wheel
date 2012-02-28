@@ -8,8 +8,10 @@ Bucket-Wheel makes it easier to excavate data from documents.
         return urlopen(self.downloadargs['url']).read()
 
       def parse(self, page):
-        baz = fromstring(page).cssselect('#foo .bar')[0].text_content()
+        x = fromstring(page)
+        baz = x.cssselect('#foo .bar')[0].text_content()
         self.save({"baz": baz}, 'chainsaw')
+        self.pipe([Docket(url) for url in x.xpath('a/@href')])
 
     class Docket(GetHTML):
 
