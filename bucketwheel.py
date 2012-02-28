@@ -41,6 +41,7 @@ class SimpleRequest(PageScraper):
     self.use_cache = kwargs.pop('use_cache') if kwargs.has_key('use_cache') else False
     self.args = args
     self.kwargs = kwargs
+    self.parseargs = {}
 
   def download(self):
     self.pipe(self.request_func(*self.args,*self.kwargs).content)
