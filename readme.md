@@ -53,3 +53,7 @@ Behind the scenes, the bucket-wheel excavator does some other cool things.
 * It randomly switches user agents if you do not specify a user agent.
 * It stores the scraper progress queue to a file and automatically
 resumes from this file.
+
+The `test` method makes it easy to test your scrapers; it allows
+you to pass a couple arguments and see what the download and parse
+functions do for these particular arguments.
