@@ -57,3 +57,11 @@ resumes from this file.
 The `test` method makes it easy to test your scrapers; it allows
 you to pass a couple arguments and see what the download and parse
 functions do for these particular arguments.
+
+Dependencies
+------------
+Bucketwheel depends on a three other libraries that Tom
+has yet to write. They are
+* Highwall: A relaxing interface to SQLite
+* Dumptruck: Helpers for scraping (for example, a function to get options from drop-down box)
+* ConveyorBelt: A list-like object backed by a file or a databese that makes it easy to maintain state across scraper runs
