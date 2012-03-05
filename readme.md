@@ -65,3 +65,10 @@ has yet to write. They are
 * Highwall: A relaxing interface to SQLite
 * Dumptruck: Helpers for scraping (for example, a function to get options from drop-down box)
 * ConveyorBelt: A list-like object backed by a file or a databese that makes it easy to maintain state across scraper runs
+
+Some scraping best-practices (maybe an overstatement)
+can be built into BucketWheel.
+* Randomly sleep between HTTP requests.
+* Randomly alter the user agent.
+* Cache HTTP requests.
+* Check robots.txt
